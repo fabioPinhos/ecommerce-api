@@ -7,7 +7,7 @@ RUN mkdir -p /opt/app
 WORKDIR /opt/app
 
 # Copy the JAR file from the target directory to the container
-COPY ./target/*.jar /opt/app/app.jar
+COPY ecommerce-api/target/*.jar /opt/app/app.jar
 
 # Expose the port that the application will run on
 EXPOSE 8080
