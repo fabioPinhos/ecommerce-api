@@ -13,6 +13,7 @@ phases:
     commands:
       - echo Build started on 'date'
       - echo Building the Docker image...
+      - mvn --quiet install
       - docker build -t $APPLICATION_NAME:$IMAGE_TAG .
       - docker tag $APPLICATION_NAME:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
   post_build:
