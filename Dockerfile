@@ -1,11 +1,5 @@
 FROM openjdk:17-oracle as build
 
-RUN apk add --update ca-certificates && rm -rf /var/cache/apk/* && \
-    find /usr/share/ca-certificates/mozilla/ -name "*.crt" -exec keytool -import -trustcacerts \
-    -keystore /usr/lib/jvm/java-1.17-openjdk/jre/lib/security/cacerts -storepass changeit -noprompt \
-    -file {} -alias {} \; && \
-    keytool -list -keystore /usr/lib/jvm/java-1.17-openjdk/jre/lib/security/cacerts --storepass changeit
-
 ENV MAVEN_VERSION 3.5.4
 ENV MAVEN_HOME /usr/lib/mvn
 ENV PATH $MAVEN_HOME/bin:$PATH
