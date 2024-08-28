@@ -25,9 +25,11 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo writing image definitions file...
       # Give your container name
-      - printf '[{"name":"SpringBootAppContainer", imageUri}:"%s"]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - DOCKER_CONTAINER_NAME=fabiopinho-ecs-api-java
+      - printf '[{"name":"%s", "imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - echo printing imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json
+  
