@@ -7,6 +7,7 @@ phases:
       - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 199299155478.dkr.ecr.us-east-2.amazonaws.com
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      # Replace with your application name
       - APPLICATION_NAME=fabiopinho-ecs-api-java
       - REPOSITORY_URI=199299155478.dkr.ecr.us-east-2.amazonaws.com/$APPLICATION_NAME
   build:
@@ -23,7 +24,11 @@ phases:
       - echo Building the Docker image...
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo writing image definitions file...
+      # Give your container name
       - printf '[{"name":"SpringBootAppContainer", imageUri}:"%s"]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - echo printing imagedefinitions.json
+      - cat imagedefinitions.json
 artifacts:
-  files: imagedefinitions.json
+  files:
+    - imagedefinitions.json
   
