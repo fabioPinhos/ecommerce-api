@@ -102,16 +102,6 @@
                     <useFile>false</useFile>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>10.10.0</version>
-                <configuration>
-                    <url>jdbc:postgresql://database-1.coszz3xhhsir.us-east-2.rds.amazonaws.com/postgres</url>
-                    <user>postgres</user>
-                    <password>a#x4%sg6J0N4k.M)[rpfn*b7jhC~</password>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
