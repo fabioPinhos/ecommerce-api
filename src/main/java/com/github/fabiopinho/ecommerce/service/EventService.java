@@ -60,30 +60,30 @@ public class EventService {
         return newEvent;
     }
 
-    private String uploadImg(MultipartFile multipartFile) {
-        String filename = UUID.randomUUID() + "-" + multipartFile.getOriginalFilename();
-
-        try {
-            File file = this.convertMultipartToFile(multipartFile);
-
-            s3client.putObject(bucketName, filename, file);
-
-            file.delete();
-
-            return s3client.getUrl(bucketName, filename).toString();
-        }catch (Exception e){
-            System.out.println("erro ao subir arquivo :::" + e.getMessage());
-            return "";
-        }
-    }
-
-    private File convertMultipartToFile(MultipartFile multipartFile) throws IOException {
-        File convFile = new File(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(multipartFile.getBytes());
-        fos.close();
-        return convFile;
-    }
+//    private String uploadImg(MultipartFile multipartFile) {
+//        String filename = UUID.randomUUID() + "-" + multipartFile.getOriginalFilename();
+//
+//        try {
+//            File file = this.convertMultipartToFile(multipartFile);
+//
+//            s3client.putObject(bucketName, filename, file);
+//
+//            file.delete();
+//
+//            return s3client.getUrl(bucketName, filename).toString();
+//        }catch (Exception e){
+//            System.out.println("erro ao subir arquivo :::" + e.getMessage());
+//            return "";
+//        }
+//    }
+//
+//    private File convertMultipartToFile(MultipartFile multipartFile) throws IOException {
+//        File convFile = new File(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+//        FileOutputStream fos = new FileOutputStream(convFile);
+//        fos.write(multipartFile.getBytes());
+//        fos.close();
+//        return convFile;
+//    }
 
     public List <EventResponseDTO> getUpcomingEvents(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
