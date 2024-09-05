@@ -43,6 +43,8 @@ public class EventService {
 
     public Event createEvent(EventRequestDTO dto){
 
+        System.out.println("Chegou aqui no comeco CREATE.");
+
         Event newEvent = new Event();
         newEvent.setTitle(dto.title());
         newEvent.setEventUrl(dto.eventUrl());
@@ -51,10 +53,15 @@ public class EventService {
         newEvent.setImgUrl("");
         newEvent.setRemote(dto.remote());
 
+        System.out.println("Chegou aqui ." + newEvent.toString());
+
         repository.save(newEvent);
+
+        System.out.println("SALVOU :::::::::::::::::::::::::::" + newEvent.toString());
 
         if (!dto.remote()){
             addressService.createAddress(dto, newEvent);
+            System.out.println("SALVOU ADDRESS :::::::::::::::::::::::::::");
         }
 
         return newEvent;
