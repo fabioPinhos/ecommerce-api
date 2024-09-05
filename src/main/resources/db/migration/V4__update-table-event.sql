@@ -1,0 +1,1 @@
+UPDATE event SET img_url=0 WHERE img_url IS NULL;

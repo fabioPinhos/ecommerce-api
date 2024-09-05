@@ -42,19 +42,13 @@ public class EventService {
 
 
     public Event createEvent(EventRequestDTO dto){
-        String imgUrl = null;
-
-        if(dto.image() != null){
-//            imgUrl = this.uploadImg(dto.image());
-            imgUrl = "";
-        }
 
         Event newEvent = new Event();
         newEvent.setTitle(dto.title());
         newEvent.setEventUrl(dto.eventUrl());
         newEvent.setDate(new Date(dto.date()));
         newEvent.setDescription(dto.description());
-        newEvent.setImgUrl(imgUrl);
+        newEvent.setImgUrl("");
         newEvent.setRemote(dto.remote());
 
         repository.save(newEvent);
