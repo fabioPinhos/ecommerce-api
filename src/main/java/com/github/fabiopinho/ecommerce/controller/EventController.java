@@ -22,27 +22,6 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
-//    /**
-//     * Cria um evento
-//     *
-//     * dica: utilizar o https://www.epochconverter.com/ e passar no campo Date
-//     *      *    - pegando o Timestamp in milliseconds: 1719782413000
-//     *
-//     * */
-//    @PostMapping(consumes = "multipart/form-data")
-//    public ResponseEntity<Event> create(@RequestParam("title") String title,
-//                                        @RequestParam(value = "description", required = false) String description,
-//                                        @RequestParam("date") Long date,
-//                                        @RequestParam("city") String city,
-//                                        @RequestParam("state") String state,
-//                                        @RequestParam("remote") Boolean remote,
-//                                        @RequestParam("eventUrl") String eventUrl,
-//                                        @RequestParam(value = "image", required = false) MultipartFile image){
-//        EventRequestDTO eventRequestDTO = new EventRequestDTO(title, description, date, city, state, remote, eventUrl, image);
-//        Event newEvent = this.eventService.createEvent(eventRequestDTO);
-//        return ResponseEntity.ok(newEvent);
-//    }
-
     /**
      * Cria um evento
      *
@@ -50,8 +29,16 @@ public class EventController {
      *      *    - pegando o Timestamp in milliseconds: 1719782413000
      *
      * */
-    @PostMapping
-    public ResponseEntity<Event> create(@RequestBody EventRequestDTO eventRequestDTO){
+    @PostMapping(consumes = "multipart/form-data")
+    public ResponseEntity<Event> create(@RequestParam("title") String title,
+                                        @RequestParam(value = "description", required = false) String description,
+                                        @RequestParam("date") Long date,
+                                        @RequestParam("city") String city,
+                                        @RequestParam("state") String state,
+                                        @RequestParam("remote") Boolean remote,
+                                        @RequestParam("eventUrl") String eventUrl,
+                                        @RequestParam(value = "image", required = false) MultipartFile image){
+        EventRequestDTO eventRequestDTO = new EventRequestDTO(title, description, date, city, state, remote, eventUrl);
         Event newEvent = this.eventService.createEvent(eventRequestDTO);
         return ResponseEntity.ok(newEvent);
     }
